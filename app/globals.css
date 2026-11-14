@@ -1,0 +1,4 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+body{background:#06101f;color:#e8f4ff}
+:focus-visible{outline:3px solid #ffe14d;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
