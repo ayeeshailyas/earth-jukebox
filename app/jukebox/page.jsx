@@ -8,10 +8,10 @@ const box="rounded-xl border border-cyan-500/50 bg-panel p-4";
 const REG=["Global","North","Equator","South"],SPEEDS=[.5,1,1.5,2];
 export default function Jukebox(){
  const [ti,setTi]=useState(0),[play,setPlay]=useState(false),[year,setYear]=useState(2025),[reg,setReg]=useState("Global"),
-  [vol,setVol]=useState(.7),[mute,setMute]=useState(false),[spd,setSpd]=useState(1),[sr,setSr]=useState(false),
+  [vol,setVol]=useState(.7),[mute,setMute]=useState(false),[spd,setSpd]=useState(1),
   [text,setText]=useState("Press play to begin."),[st,setSt]=useState({rgb:[0,0,0],bright:0,hot:0}),[src,setSrc]=useState("procedural");
  const cv=useRef(),viz=useRef(),vid=useRef(),eng=useRef(null),R=useRef({});
- R.current={play,ti,year,reg,spd,sr};
+ R.current={play,ti,year,reg,spd};
  const tr=TRACKS[ti];
  useEffect(()=>{eng.current=new Engine();},[]);
  useEffect(()=>{eng.current?.setVolume(vol,mute);},[vol,mute,play]);
@@ -23,7 +23,7 @@ export default function Jukebox(){
  async function toggle(){const e=eng.current;if(!R.current.play){await e.start();e.setVolume(vol,mute);vid.current.play().catch(()=>{});setPlay(true);}else{e.stop();vid.current.pause();setPlay(false);}}
  useEffect(()=>{const sm=document.createElement("canvas");sm.width=sm.height=80;const sc=sm.getContext("2d",{willReadFrequently:true});
   let prev=0,lastN=0,t=0;
-  const id=setInterval(()=>{const {play,ti,year,reg,spd,sr}=R.current,c=cv.current;if(!c)return;const x=c.getContext("2d"),v=vid.current;t+=55*spd;
+  const id=setInterval(()=>{const {play,ti,year,reg,spd}=R.current,c=cv.current;if(!c)return;const x=c.getContext("2d"),v=vid.current;t+=55*spd;
    if(v.readyState>=2&&v.videoWidth)x.drawImage(v,0,0,c.width,c.height);else drawFallback(x,c.width,c.height,t,TRACKS[ti].id,year);
    // audio-reactive bars
    const vx=viz.current.getContext("2d"),b=eng.current?.bars()||[];vx.clearRect(0,0,viz.current.width,viz.current.height);
@@ -31,7 +31,7 @@ export default function Jukebox(){
    if(!play)return;
    sc.drawImage(c,0,0,80,80);const z=["North","Equator","South"].indexOf(reg),m=analyze(sc,80,80,prev,z<0?null:z);prev=m.bright;
    setSt({rgb:m.rgb,bright:m.bright,hot:m.hot});const s=eng.current.update(m,TRACKS[ti],t);
-   if(s&&Date.now()-lastN>3000){lastN=Date.now();const msg=`${TRACKS[ti].title}, ${reg}: ${s}`;setText(msg);if(sr&&window.speechSynthesis){speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance(msg));}}
+   if(s&&Date.now()-lastN>3000){lastN=Date.now();const msg=`${TRACKS[ti].title}, ${reg}: ${s}`;setText(msg);}
   },55);return()=>clearInterval(id);},[]);
  useEffect(()=>{const k=e=>{if(["INPUT","SELECT","BUTTON"].includes(e.target.tagName))return;
   if(e.code==="Space"){e.preventDefault();toggle();}
@@ -41,7 +41,7 @@ export default function Jukebox(){
   <div className="grid gap-4 md:grid-cols-[2fr_1fr]">
    <section className={box} aria-label="Earth visualization"><video ref={vid} muted loop playsInline className="hidden"/>
     <canvas ref={cv} width={400} height={400} role="img" aria-label={`${tr.title} visualization, source: ${src}`} className="mx-auto aspect-square max-h-[380px] rounded-full shadow-[0_0_40px_#1fb6d988]"/>
-    <p className="mt-2 text-center text-xs text-sky-300">Source: {src}{src==="procedural"&&" (add files to /public/datasets/)"}</p></section>
+    <p className="mt-2 text-center text-xs text-sky-300">Source: {src}</p></section>
    <aside className="space-y-4">
     <div className="grid grid-cols-2 gap-3">
      <div className={box+" text-center"}><p className="font-bold text-sky-400">❄ Cold/Blue</p><p className="text-sm">150–300 Hz</p><p className="text-xs">Deep ambient tones</p></div>
@@ -65,8 +65,7 @@ export default function Jukebox(){
     <label className="flex items-center gap-2">Volume<input type="range" min="0" max="1" step=".01" value={vol} onChange={e=>setVol(+e.target.value)} className="flex-1 accent-emerald-400"/></label>
     <div className="flex flex-wrap gap-2">
      <button onClick={()=>setSpd(SPEEDS[(SPEEDS.indexOf(spd)+1)%4])} className="rounded-lg border border-cyan-500/50 px-3 py-1">Speed {spd}x</button>
-     <button aria-pressed={mute} onClick={()=>setMute(!mute)} className="rounded-lg border border-cyan-500/50 px-3 py-1">{mute?"Unmute":"Mute"}</button>
-     <button aria-pressed={sr} onClick={()=>setSr(!sr)} className="rounded-lg border border-cyan-500/50 px-3 py-1">Screen Reader: {sr?"On":"Off"}</button></div></div>
+     <button aria-pressed={mute} onClick={()=>setMute(!mute)} className="rounded-lg border border-cyan-500/50 px-3 py-1">{mute?"Unmute":"Mute"}</button></div></div>
   </section>
   <p className="text-xs text-sky-300">Shortcuts: Space play/pause · ←/→ switch track.</p>
  </main>)}

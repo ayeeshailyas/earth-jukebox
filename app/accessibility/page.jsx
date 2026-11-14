@@ -11,7 +11,7 @@ export default function A11y(){return(
  <section className={box} aria-labelledby="s"><h2 id="s" className="font-heading mb-2 text-xl font-semibold text-sky-400">Screen reader support</h2>
   <ul className="list-disc space-y-1 pl-5 text-sm">
    <li>A text description of what you're hearing updates every three seconds in a polite live region.</li>
-   <li>Turn on <strong>Screen Reader</strong> in the player to have the browser speak those descriptions aloud, even without a screen reader running.</li>
+   <li>Use your operating system or browser screen reader to hear the live descriptions.</li>
    <li>The visualization canvas has a text label naming the track and data source. The audio bars are hidden because the description covers them.</li>
    <li>Track changes are announced.</li></ul></section>
  <section className={box} aria-labelledby="v"><h2 id="v" className="font-heading mb-2 text-xl font-semibold text-sky-400">Visual comfort</h2>
