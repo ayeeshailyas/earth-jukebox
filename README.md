@@ -45,7 +45,7 @@ with browser audio autoplay restrictions.
 
 ## Requirements
 
-- Node.js 18 or newer
+- Node.js 20.9 or newer
 - npm
 - A modern browser with Canvas, Web Audio, and Speech Synthesis support
 
@@ -82,6 +82,37 @@ The main player is available at
 | `npm run dev` | Start the Next.js development server |
 | `npm run build` | Create an optimized production build |
 | `npm run start` | Serve the production build |
+
+## Deploying to Vercel
+
+This repository includes [`vercel.json`](vercel.json) with the Next.js build
+commands and baseline security response headers.
+
+### Deploy from GitHub
+
+1. Push the repository to GitHub.
+2. In the [Vercel dashboard](https://vercel.com/new), select **Add New Project**
+   and import the repository.
+3. Keep the detected **Next.js** framework and the repository root as the
+   project root.
+4. Click **Deploy**. No environment variables are required by the current app.
+
+Vercel uses `npm ci` and the committed `package-lock.json` to install the exact
+dependency versions. The project declares Node.js `20.9.0` or newer, matching
+the supported Next.js 16 runtime.
+
+### Deploy with the Vercel CLI
+
+```bash
+npm install --global vercel
+vercel login
+vercel
+vercel --prod
+```
+
+Do not add API keys or other secrets to the repository. If future features need
+secrets, add them in Vercel Project Settings under **Environment Variables**
+and read them only on the server.
 
 ## Optional source videos
 
@@ -201,7 +232,7 @@ problem persists, remove the generated `.next` directory and run
 
 ## Technology
 
-- [Next.js](https://nextjs.org/) 14
+- [Next.js](https://nextjs.org/) 16
 - [React](https://react.dev/) 18
 - [Tone.js](https://tonejs.github.io/) 15
 - [Tailwind CSS](https://tailwindcss.com/) 3

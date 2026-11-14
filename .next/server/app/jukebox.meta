@@ -1,0 +1,34 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/jukebox/layout,_N_T_/jukebox/page,_N_T_/jukebox"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/jukebox/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 64,
+    "slots": {
+      "children": {
+        "hints": 96,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/4d05bf30efc651af2f58b4719e502d3b2916e38fbd32c5341eaac3d64fa96812/$/jukebox",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/jukebox/page"
+    },
+    "isFallback": false
+  }
+}
