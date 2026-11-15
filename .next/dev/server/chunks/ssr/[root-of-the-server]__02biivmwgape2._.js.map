@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/ADMIN/Desktop/earth-jukebox/earth-jukebox/components/Nav.jsx"],"sourcesContent":["\"use client\";\nimport Link from \"next/link\";\nimport {usePathname} from \"next/navigation\";\nconst L=[[\"/\",\"Home\"],[\"/jukebox\",\"Jukebox\"],[\"/about\",\"About\"],[\"/accessibility\",\"Accessibility\"]];\nexport default function Nav(){const p=usePathname();return(\n<nav aria-label=\"Main\" className=\"flex justify-end gap-1 border-b border-cyan-500/30 bg-panel/80 px-4 py-2 text-sm\">\n {L.map(([h,t])=><Link key={h} href={h} aria-current={p===h?\"page\":undefined} className={\"rounded-lg px-3 py-1 hover:bg-sky-400/20 \"+(p===h?\"bg-sky-400 font-semibold text-ink\":\"text-sky-200\")}>{t}</Link>)}\n</nav>)}\n"],"names":["L","Nav","p","className","map","h","t","href","undefined"],"mappings":";;;;;AACA;AACA;AAFA;;;;AAGA,MAAMA,IAAE;IAAC;QAAC;QAAI;KAAO;IAAC;QAAC;QAAW;KAAU;IAAC;QAAC;QAAS;KAAQ;IAAC;QAAC;QAAiB;KAAgB;CAAC;AACpF,SAASC;IAAM,MAAMC,IAAE,IAAA,iJAAW;IAAG,qBACpD,8OAAC;QAAI,cAAW;QAAOC,WAAU;kBAC/BH,EAAEI,GAAG,CAAC,CAAC,CAACC,GAAEC,EAAE,iBAAG,8OAAC,uKAAI;gBAASC,MAAMF;gBAAG,gBAAcH,MAAIG,IAAE,SAAOG;gBAAWL,WAAW,8CAA4C,CAACD,MAAIG,IAAE,sCAAoC,cAAc;0BAAIC;eAAtKD;;;;;;;;;;AACrB"}}]
+}

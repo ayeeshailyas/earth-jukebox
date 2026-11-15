@@ -1,0 +1,7 @@
+{"timestamp":"00:00:08.880","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:49.636","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:00:57.752","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:01:45.417","source":"Server","level":"LOG","message":"○ Compiling /jukebox ..."}
+{"timestamp":"00:01:49.286","source":"Browser","level":"LOG","message":" * Tone.js v15.0.4 * "}
+{"timestamp":"00:02:42.473","source":"Server","level":"LOG","message":"✓ Compiled in 440ms"}
+{"timestamp":"00:02:53.153","source":"Server","level":"LOG","message":"✓ Compiled in 814ms"}
